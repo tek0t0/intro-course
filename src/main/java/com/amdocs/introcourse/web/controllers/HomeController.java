@@ -1,7 +1,9 @@
 package com.amdocs.introcourse.web.controllers;
 
 
+import com.amdocs.introcourse.domain.model.ContactBindingModel;
 import com.amdocs.introcourse.domain.model.EmployeeBindingModel;
+import com.amdocs.introcourse.service.ContactService;
 import com.amdocs.introcourse.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +16,12 @@ import org.springframework.web.bind.annotation.*;
 public class HomeController {
 
     private final EmployeeService employeeService;
+    private final ContactService contactService;
 
     @Autowired
-    public HomeController(EmployeeService employeeService) {
+    public HomeController(EmployeeService employeeService, ContactService contactService) {
         this.employeeService = employeeService;
+        this.contactService = contactService;
     }
 
 
@@ -43,6 +47,12 @@ public class HomeController {
     @GetMapping("contact")
     public String contact(){
         return "contact";
+    }
+
+    @PostMapping("contact")
+    public String contactConfirm(ContactBindingModel contactBindingModel){
+        contactService.addContact(contactBindingModel);
+        return "index";
     }
 
     @GetMapping("feedback")
