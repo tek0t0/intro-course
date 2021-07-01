@@ -1,8 +1,10 @@
 package com.amdocs.introcourse.service.impl;
 
 import com.amdocs.introcourse.domain.entities.Employee;
+import com.amdocs.introcourse.domain.model.EmployeeBindingModel;
 import com.amdocs.introcourse.repository.EmployeeRepo;
 import com.amdocs.introcourse.service.EmployeeService;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,20 +14,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
     private final EmployeeRepo employeeRepository;
+    private  final ModelMapper modelMapper;
 
-    public EmployeeServiceImpl(EmployeeRepo employeeRepository) {
+    public EmployeeServiceImpl(EmployeeRepo employeeRepository, ModelMapper modelMapper) {
         this.employeeRepository = employeeRepository;
+        this.modelMapper = modelMapper;
     }
 
 
-    public Employee addEmployee(Employee employee) {
-        return this.employeeRepository.saveAndFlush(employee);
+    public Employee addEmployee(EmployeeBindingModel employee) {
+
+        return this.employeeRepository.saveAndFlush(modelMapper.map(employee, Employee.class));
     }
 
     public Employee updateEmployee(String empId, Employee employee) {
         Employee employee1 = this.employeeRepository.getById(empId);
-        employee1.setFirstName(employee.getFirstName());
-        employee1.setSecondName(employee.getSecondName());
+
 
         return employee1;
     }
