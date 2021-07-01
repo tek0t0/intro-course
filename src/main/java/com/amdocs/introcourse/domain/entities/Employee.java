@@ -1,7 +1,7 @@
 package com.amdocs.introcourse.domain.entities;
 
 
-import org.springframework.web.multipart.MultipartFile;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

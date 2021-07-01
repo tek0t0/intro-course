@@ -50,6 +50,40 @@
 </div>
 <div class="container">
     <h1 class="text-center text-white">Contact</h1>
+    <form method="POST"
+          class="main-form mx-auto w-50 d-flex flex-column justify-content-center">
+        <div>
+            <div class="form-group ">
+                <label for="name" class="text-white font-weight-bold">Username</label>
+                <input  id="name" type="text" min="2" max="20" class="form-control"
+                        placeholder="Name"/>
+            </div>
+
+            <div class="form-group ">
+                <label for="password" class="text-white font-weight-bold">Email</label>
+                <input id="password" type="password" min="2" max="20" class="form-control"
+                       placeholder="Password"/>
+
+            </div>
+            <div class="form-group">
+                <label for="phone" class="text-white font-weight-bold">Phone</label>
+                <input id="phone" type="text" min="2" max="20" class="form-control"
+                       placeholder="Phone"/>
+
+            </div>
+            <div class="form-group ">
+                <label for="address" class="text-white font-weight-bold">Message</label>
+                <textarea id="address" rows="4" cols="50" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-info btn-lg" value="Submit"/>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>
