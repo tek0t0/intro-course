@@ -29,7 +29,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public Employee updateEmployee(String empId, Employee employee) {
         Employee employee1 = this.employeeRepository.getById(empId);
-
+        employee1
+                .setAddress(employee.getAddress())
+                .setEmail((employee.getEmail()))
+                .setName(employee.getName())
+                .setPassword(employee.getPassword())
+                .setPhone(employee.getPhone());
 
         return employee1;
     }
