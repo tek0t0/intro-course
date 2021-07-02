@@ -1,12 +1,14 @@
 package com.amdocs.introcourse.domain.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class EmployeeBindingModel {
     private String name;
     private String email;
     private String password;
     private String phone;
     private String address;
-    private String photo;
+    private MultipartFile file;
 
     public String getName() {
         return name;
@@ -53,12 +55,12 @@ public class EmployeeBindingModel {
         return this;
     }
 
-    public String getPhoto() {
-        return photo;
+    public MultipartFile getFile() {
+        return file;
     }
 
-    public EmployeeBindingModel setPhoto(String photo) {
-        this.photo = photo;
+    public EmployeeBindingModel setFile(MultipartFile file) {
+        this.file = file;
         return this;
     }
 }

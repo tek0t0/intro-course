@@ -16,7 +16,7 @@ public class Employee extends BaseEntity{
     private String password;
     private String phone;
     private String address;
-    private String photo;
+    private String file;
 
 
 
@@ -67,13 +67,14 @@ public class Employee extends BaseEntity{
         this.address = address;
         return this;
     }
+
     @Column(name = "photo")
-    public String getPhoto() {
-        return photo;
+    public String getFile() {
+        return file;
     }
 
-    public Employee setPhoto(String photo) {
-        this.photo = photo;
+    public Employee setFile(String file) {
+        this.file = file;
         return this;
     }
 }
