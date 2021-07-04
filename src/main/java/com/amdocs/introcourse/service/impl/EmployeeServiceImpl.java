@@ -50,8 +50,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee1;
     }
 
-    public Employee getEmployeeById(String id) {
-        return this.employeeRepository.getById(id);
+    public Employee getEmployeeByName(String name) {
+        return this.employeeRepository.getByName(name);
     }
 
     public List<Employee> getEmployees() {

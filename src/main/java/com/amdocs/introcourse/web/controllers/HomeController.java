@@ -4,9 +4,11 @@ package com.amdocs.introcourse.web.controllers;
 import com.amdocs.introcourse.domain.model.ContactBindingModel;
 import com.amdocs.introcourse.domain.model.CourseBindingModel;
 import com.amdocs.introcourse.domain.model.EmployeeBindingModel;
+import com.amdocs.introcourse.domain.model.FeedbackBindingModel;
 import com.amdocs.introcourse.service.ContactService;
 import com.amdocs.introcourse.service.CourseService;
 import com.amdocs.introcourse.service.EmployeeService;
+import com.amdocs.introcourse.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,12 +25,14 @@ public class HomeController {
     private final EmployeeService employeeService;
     private final ContactService contactService;
     private final CourseService courseService;
+    private final FeedbackService feedbackService;
 
     @Autowired
-    public HomeController(EmployeeService employeeService, ContactService contactService, CourseService courseService) {
+    public HomeController(EmployeeService employeeService, ContactService contactService, CourseService courseService, FeedbackService feedbackService) {
         this.employeeService = employeeService;
         this.contactService = contactService;
         this.courseService = courseService;
+        this.feedbackService = feedbackService;
     }
 
 
@@ -74,8 +78,17 @@ public class HomeController {
     }
 
     @GetMapping("/feedback")
-    public String feedback() {
+    public String feedback(Model model) {
+        if (!model.containsAttribute("feedbackBindingModel")) {
+            model.addAttribute("feedbackBindingModel", new FeedbackBindingModel());
+        }
         return "feedback";
+    }
+
+    @PostMapping("/feedback")
+    public String feedbackConfirm(FeedbackBindingModel feedbackBindingModel) {
+        this.feedbackService.addFeedback(feedbackBindingModel);
+        return "index";
     }
 
     @GetMapping("/course")

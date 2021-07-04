@@ -1,10 +1,9 @@
 package com.amdocs.introcourse.repository;
 
-import com.amdocs.introcourse.domain.entities.Course;
+import com.amdocs.introcourse.domain.entities.Feedback;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CourseRepo extends JpaRepository<Course, String> {
-    Course findByName(String courseName);
+public interface FeedbackRepo extends JpaRepository<Feedback, String> {
 }

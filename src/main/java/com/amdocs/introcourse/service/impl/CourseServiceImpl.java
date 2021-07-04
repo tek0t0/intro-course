@@ -22,4 +22,9 @@ public class CourseServiceImpl implements CourseService {
     public Course addCourse(CourseBindingModel courseBindingModel) {
         return this.courseRepo.saveAndFlush(modelMapper.map(courseBindingModel, Course.class));
     }
+
+    @Override
+    public Course getCourseByName(String courseName) {
+        return courseRepo.findByName(courseName);
+    }
 }
