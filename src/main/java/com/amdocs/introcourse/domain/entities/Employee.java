@@ -5,6 +5,7 @@ package com.amdocs.introcourse.domain.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +17,7 @@ public class Employee extends BaseEntity{
     private String password;
     private String phone;
     private String address;
-    private String file;
-
+    private byte[] file;
 
 
     @Column(name = "name")
@@ -68,12 +68,12 @@ public class Employee extends BaseEntity{
         return this;
     }
 
-    @Column(name = "photo")
-    public String getFile() {
+    @Lob
+    public byte[] getFile() {
         return file;
     }
 
-    public Employee setFile(String file) {
+    public Employee setFile(byte[] file) {
         this.file = file;
         return this;
     }
