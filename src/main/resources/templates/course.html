@@ -49,7 +49,44 @@
     </nav>
 </div>
 <div class="container">
-    <h1 class="text-center text-white">Course</h1>
+    <h1 class="text-center text-white">Contact</h1>
+    <form method="POST"
+          th:action="@{/course}"
+          th:object="${courseBindingModel}"
+          class="main-form mx-auto w-50 d-flex flex-column justify-content-center">
+        <div>
+            <div class="form-group ">
+                <label for="name" class="text-white font-weight-bold">Name</label>
+                <input   th:field="*{name}" id="name" type="text" min="2" max="20" class="form-control"
+                         placeholder="Name"/>
+            </div>
+
+            <div class="form-group ">
+                <label for="description" class="text-white font-weight-bold">Description</label>
+                <textarea  th:field="*{description}" id="description" type="text" class="form-control"
+                        placeholder="Description"  rows="4" cols="50" ></textarea>
+
+            </div>
+            <div class="form-group">
+                <label for="resources" class="text-white font-weight-bold">Resources</label>
+                <input  th:field="*{resources}" id="resources" type="text" class="form-control"
+                        placeholder="Resources"/>
+
+            </div>
+            <div class="form-group ">
+                <label for="fees" class="text-white font-weight-bold">Fees</label>
+                <input th:field="*{fees}" id="fees" class="form-control" placeholder="Resources"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="">
+                <div class="button-holder d-flex">
+                    <input type="submit" class="btn btn-info btn-lg" value="Submit"/>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>
+

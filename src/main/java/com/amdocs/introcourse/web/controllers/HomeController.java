@@ -2,8 +2,10 @@ package com.amdocs.introcourse.web.controllers;
 
 
 import com.amdocs.introcourse.domain.model.ContactBindingModel;
+import com.amdocs.introcourse.domain.model.CourseBindingModel;
 import com.amdocs.introcourse.domain.model.EmployeeBindingModel;
 import com.amdocs.introcourse.service.ContactService;
+import com.amdocs.introcourse.service.CourseService;
 import com.amdocs.introcourse.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,11 +22,13 @@ public class HomeController {
 
     private final EmployeeService employeeService;
     private final ContactService contactService;
+    private final CourseService courseService;
 
     @Autowired
-    public HomeController(EmployeeService employeeService, ContactService contactService) {
+    public HomeController(EmployeeService employeeService, ContactService contactService, CourseService courseService) {
         this.employeeService = employeeService;
         this.contactService = contactService;
+        this.courseService = courseService;
     }
 
 
@@ -55,7 +59,7 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("contact")
+    @GetMapping("/contact")
     public String contact(Model model) {
         if (!model.containsAttribute("contactBindingModel")) {
             model.addAttribute("contactBindingModel", new ContactBindingModel());
@@ -63,20 +67,29 @@ public class HomeController {
         return "contact";
     }
 
-    @PostMapping("contact")
+    @PostMapping("/contact")
     public String contactConfirm(ContactBindingModel contactBindingModel) {
         contactService.addContact(contactBindingModel);
         return "index";
     }
 
-    @GetMapping("feedback")
+    @GetMapping("/feedback")
     public String feedback() {
         return "feedback";
     }
 
-    @GetMapping("course")
-    public String course() {
+    @GetMapping("/course")
+    public String addCourse(Model model) {
+        if (!model.containsAttribute("courseBindingModel")) {
+            model.addAttribute("courseBindingModel", new CourseBindingModel());
+        }
         return "course";
+    }
+
+    @PostMapping("/course")
+    public String addCourseConfirm(CourseBindingModel courseBindingModel){
+        this.courseService.addCourse(courseBindingModel);
+        return "index";
     }
 
 }
