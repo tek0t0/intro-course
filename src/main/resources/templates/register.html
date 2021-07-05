@@ -96,6 +96,31 @@
             </div>
         </div>
     </form>
+    <table class="table table-sm table-hover mx-auto" th:object="${allUsers}">
+        <tbody>
+        <th:block th:each="a, iter: ${allUsers}" th:object="${a}">
+            <tr class="row mx-auto">
+                <th class="col-sm-1 d-flex justify-content-center align-items-center">
+                    <span class="font-weight-bold text-white" th:utext="${iter.index + 1}"></span>
+                </th>
+
+                <td class="col-sm-2 d-flex justify-content-center align-items-center">
+                    <span class="font-weight-bold h5 text-white" th:utext="*{name}"></span>
+                </td>
+                <td class="col-sm-4">
+                    <p class="font-weight-bold text-white" th:utext="*{address}"></p>
+                </td>
+                <td class="col-sm-2">
+                    <p class="font-weight-bold text-white" th:utext="*{phone}"></p>
+                </td>
+                <td class="col-sm-2">
+                    <p class="font-weight-bold text-white" th:utext="*{email}"></p>
+                </td>
+
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
 </div>
 
 </body>

@@ -48,19 +48,19 @@ public class HomeController {
             model.addAttribute("employeeBindingModel", new EmployeeBindingModel());
         }
 
+        if (!model.containsAttribute("allUsers")) {
+            model.addAttribute("allUsers", this.employeeService.getEmployees());
+        }
+
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerConfirm(EmployeeBindingModel employeeBindingModel,
+    public String registerConfirm(EmployeeBindingModel employeeBindingModel,Model model,
                                   @RequestParam("file") MultipartFile file) throws IOException {
-
-        System.out.println();
+        model.addAttribute("allUsers", this.employeeService.getEmployees());
         employeeService.addEmployee(employeeBindingModel,file);
-
-
-
-        return "index";
+        return "register";
     }
 
     @GetMapping("/contact")
@@ -68,13 +68,17 @@ public class HomeController {
         if (!model.containsAttribute("contactBindingModel")) {
             model.addAttribute("contactBindingModel", new ContactBindingModel());
         }
+
+        if (!model.containsAttribute("allContacts")) {
+            model.addAttribute("allContacts", this.contactService.getAllContacts());
+        }
         return "contact";
     }
 
     @PostMapping("/contact")
     public String contactConfirm(ContactBindingModel contactBindingModel) {
         contactService.addContact(contactBindingModel);
-        return "index";
+        return "contact";
     }
 
     @GetMapping("/feedback")
@@ -88,7 +92,7 @@ public class HomeController {
     @PostMapping("/feedback")
     public String feedbackConfirm(FeedbackBindingModel feedbackBindingModel) {
         this.feedbackService.addFeedback(feedbackBindingModel);
-        return "index";
+        return "feedback";
     }
 
     @GetMapping("/course")
@@ -102,7 +106,7 @@ public class HomeController {
     @PostMapping("/course")
     public String addCourseConfirm(CourseBindingModel courseBindingModel){
         this.courseService.addCourse(courseBindingModel);
-        return "index";
+        return "course";
     }
 
 }

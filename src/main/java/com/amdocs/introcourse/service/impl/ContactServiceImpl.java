@@ -8,6 +8,8 @@ import com.amdocs.introcourse.service.ContactService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ContactServiceImpl implements ContactService {
 
@@ -27,5 +29,10 @@ public class ContactServiceImpl implements ContactService {
         Contact contact = modelMapper.map(contactBindingModel, Contact.class);
         contact.setEmployee(employeeRepo.getByName(contactBindingModel.getName()));
         contactsRepo.saveAndFlush(contact);
+    }
+
+    @Override
+    public List<Contact> getAllContacts() {
+        return this.contactsRepo.findAll();
     }
 }
