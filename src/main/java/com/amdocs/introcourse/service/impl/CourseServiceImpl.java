@@ -7,6 +7,8 @@ import com.amdocs.introcourse.service.CourseService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CourseServiceImpl implements CourseService {
 
@@ -26,5 +28,11 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course getCourseByName(String courseName) {
         return courseRepo.findByName(courseName);
+    }
+
+    @Override
+    public List<Course> getAllCourses() {
+
+        return this.courseRepo.findAll();
     }
 }

@@ -86,6 +86,34 @@
             </div>
         </div>
     </form>
+
+    <table class="table table-sm table-hover mx-auto" th:object="${allCourses}">
+        <tbody>
+        <th:block th:each="c, iter: ${allCourses}" th:object="${c}">
+            <tr class="row mx-auto">
+                <th class="col-sm-1 d-flex justify-content-center align-items-center">
+                    <span class="font-weight-bold text-white" th:utext="${iter.index + 1}"></span>
+                </th>
+
+                <td class="col-sm-2 d-flex justify-content-center align-items-center">
+                    <span class="font-weight-bold h5 text-white" th:utext="*{name}"></span>
+                </td>
+
+                <td class="col-sm-2">
+                    <p class="font-weight-bold text-white" th:utext="*{description}"></p>
+                </td>
+                <td class="col-sm-3">
+                    <p class="font-weight-bold text-white" th:utext="*{resources}"></p>
+                </td>
+
+                <td class="col-sm-4">
+                    <p class="font-weight-bold text-white" th:utext="*{fees}"></p>
+                </td>
+
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

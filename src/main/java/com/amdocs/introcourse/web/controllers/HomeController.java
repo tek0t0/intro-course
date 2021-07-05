@@ -87,13 +87,18 @@ public class HomeController {
         if (!model.containsAttribute("feedbackBindingModel")) {
             model.addAttribute("feedbackBindingModel", new FeedbackBindingModel());
         }
+
+        if (!model.containsAttribute("allFeedbacks")) {
+            model.addAttribute("allFeedbacks", this.feedbackService.getAllFeedbacks());
+        }
         return "feedback";
     }
 
     @PostMapping("/feedback")
-    public String feedbackConfirm(FeedbackBindingModel feedbackBindingModel) {
+    public String feedbackConfirm(FeedbackBindingModel feedbackBindingModel,Model model) {
+        model.addAttribute("allFeedbacks", this.feedbackService.getAllFeedbacks());
         this.feedbackService.addFeedback(feedbackBindingModel);
-        return "feedback";
+        return "redirect:/feedback";
     }
 
     @GetMapping("/course")
@@ -101,13 +106,17 @@ public class HomeController {
         if (!model.containsAttribute("courseBindingModel")) {
             model.addAttribute("courseBindingModel", new CourseBindingModel());
         }
+        if (!model.containsAttribute("allCourses")) {
+            model.addAttribute("allCourses", this.courseService.getAllCourses());
+        }
         return "course";
     }
 
     @PostMapping("/course")
-    public String addCourseConfirm(CourseBindingModel courseBindingModel){
+    public String addCourseConfirm(CourseBindingModel courseBindingModel, Model model){
         this.courseService.addCourse(courseBindingModel);
-        return "course";
+        model.addAttribute("allCourses", this.courseService.getAllCourses());
+        return "redirect:/course";
     }
 
 }
