@@ -60,7 +60,7 @@ public class HomeController {
                                   @RequestParam("file") MultipartFile file) throws IOException {
         model.addAttribute("allUsers", this.employeeService.getEmployees());
         employeeService.addEmployee(employeeBindingModel,file);
-        return "register";
+        return "redirect:/register";
     }
 
     @GetMapping("/contact")
@@ -76,9 +76,10 @@ public class HomeController {
     }
 
     @PostMapping("/contact")
-    public String contactConfirm(ContactBindingModel contactBindingModel) {
+    public String contactConfirm(ContactBindingModel contactBindingModel, Model model) {
+        model.addAttribute("allContacts", this.contactService.getAllContacts());
         contactService.addContact(contactBindingModel);
-        return "contact";
+        return "redirect:/contact";
     }
 
     @GetMapping("/feedback")
